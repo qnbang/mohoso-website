@@ -1,7 +1,2 @@
 /* 시각조정.css — 시각편집기로 만든 디자인 보정 (직접 수정해도 됩니다)
    형식을 유지해 주세요: 선택자 { 속성: 값 !important; } — 편집기가 다시 읽어들입니다. */
-
-a.header__logo > img {
-  width: 151px !important;
-  height: 54px !important;
-}
