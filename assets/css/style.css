@@ -1,0 +1,223 @@
+/* ==========================================================
+   모호소 건축사사무소 (MOHOSO Architects & Planners)
+   디자인 원칙: 흰 배경 · 이미지 중심 · 절제된 타이포 · 주황 포인트
+   ========================================================== */
+
+:root {
+  --ink: #131313;          /* 기본 글자색 */
+  --gray: #8a8a8a;         /* 보조 글자색 */
+  --line: #e7e5e2;         /* 구분선 */
+  --bg: #ffffff;           /* 배경 */
+  --accent: #ea5f2c;       /* 로고의 주황 */
+  --max: 1440px;           /* 콘텐츠 최대 폭 */
+  --pad: clamp(20px, 4vw, 56px);
+  --header-h: 72px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont,
+    "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+  color: var(--ink);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.6;
+}
+
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+ul { list-style: none; }
+
+.en { font-family: Poppins, "Pretendard Variable", sans-serif; letter-spacing: 0.01em; }
+
+.wrap { max-width: var(--max); margin: 0 auto; padding-left: var(--pad); padding-right: var(--pad); }
+
+/* ---------- 헤더 ---------- */
+.header {
+  position: fixed; inset: 0 0 auto 0; z-index: 100;
+  height: var(--header-h);
+  background: rgba(255, 255, 255, 0.86);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.3s ease;
+}
+.header.scrolled { border-bottom-color: var(--line); }
+.header__inner {
+  max-width: var(--max); margin: 0 auto; height: 100%;
+  padding: 0 var(--pad);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.header__logo img { height: 30px; width: auto; }
+
+.nav { display: flex; gap: clamp(20px, 3vw, 44px); }
+.nav a {
+  font-size: 15px; font-weight: 500; letter-spacing: 0.02em;
+  position: relative; padding: 6px 0;
+  color: var(--ink);
+}
+.nav a::after {
+  content: ""; position: absolute; left: 0; bottom: 0;
+  width: 100%; height: 2px; background: var(--accent);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform 0.25s ease;
+}
+.nav a:hover::after, .nav a.active::after { transform: scaleX(1); }
+
+/* 모바일 메뉴 버튼 */
+.menu-btn { display: none; background: none; border: 0; cursor: pointer; padding: 8px; }
+.menu-btn span { display: block; width: 22px; height: 2px; background: var(--ink); margin: 5px 0; transition: 0.3s; }
+
+main { padding-top: var(--header-h); }
+
+/* ---------- 인트로 (메인 상단) ---------- */
+.intro { padding-top: clamp(56px, 9vw, 130px); padding-bottom: clamp(40px, 6vw, 90px); }
+.intro__title {
+  font-size: clamp(34px, 6vw, 84px);
+  font-weight: 600; line-height: 1.12; letter-spacing: -0.02em;
+}
+.intro__title .dot { color: var(--accent); }
+.intro__sub {
+  margin-top: 26px; max-width: 560px;
+  font-size: clamp(15px, 1.6vw, 18px); color: var(--gray); font-weight: 400;
+}
+
+/* ---------- 프로젝트 그리드 ---------- */
+.works { padding-bottom: clamp(70px, 9vw, 140px); }
+.works__grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: clamp(16px, 2.5vw, 40px);
+  row-gap: clamp(48px, 6vw, 110px);
+}
+.work-card { grid-column: span 12; }
+
+/* 12칸 그리드 위에서 7/5 — 5/7 교차 배치로 리듬을 만든다 */
+@media (min-width: 760px) {
+  .work-card:nth-child(4n + 1) { grid-column: 1 / span 7; }
+  .work-card:nth-child(4n + 2) { grid-column: 8 / span 5; align-self: end; }
+  .work-card:nth-child(4n + 3) { grid-column: 1 / span 5; }
+  .work-card:nth-child(4n + 4) { grid-column: 6 / span 7; }
+}
+
+.work-card__media {
+  overflow: hidden; background: #f2f0ed;
+  aspect-ratio: 4 / 3;
+}
+.work-card:nth-child(4n + 2) .work-card__media,
+.work-card:nth-child(4n + 3) .work-card__media { aspect-ratio: 1 / 1; }
+
+.work-card__media img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform 0.7s cubic-bezier(0.2, 0.6, 0.2, 1);
+}
+.work-card:hover .work-card__media img { transform: scale(1.04); }
+
+.work-card__body { margin-top: 16px; display: flex; align-items: baseline; justify-content: space-between; gap: 16px; }
+.work-card__title { font-size: clamp(17px, 1.8vw, 21px); font-weight: 600; letter-spacing: -0.01em; }
+.work-card__title::after {
+  content: ""; display: inline-block; width: 7px; height: 7px; border-radius: 50%;
+  background: var(--accent); margin-left: 9px; vertical-align: middle;
+  opacity: 0; transform: scale(0.4); transition: 0.3s ease;
+}
+.work-card:hover .work-card__title::after { opacity: 1; transform: scale(1); }
+.work-card__title-ko { display: block; font-size: 14px; font-weight: 400; color: var(--gray); margin-top: 3px; }
+.work-card__meta { font-size: 13px; color: var(--gray); white-space: nowrap; }
+
+/* ---------- 스크롤 등장 애니메이션 ---------- */
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.8s ease, transform 0.8s ease; }
+.reveal.on { opacity: 1; transform: none; }
+
+/* ---------- 프로젝트 상세 ---------- */
+.work-hero { width: 100%; max-height: 78vh; overflow: hidden; background: #f2f0ed; }
+.work-hero img { width: 100%; height: 100%; object-fit: cover; }
+
+.work-head { padding: clamp(40px, 6vw, 80px) 0 clamp(28px, 4vw, 56px); display: grid; gap: 28px; }
+@media (min-width: 900px) { .work-head { grid-template-columns: 1.4fr 1fr; gap: 60px; } }
+
+.work-head h1 { font-size: clamp(28px, 4vw, 52px); font-weight: 600; line-height: 1.15; letter-spacing: -0.02em; }
+.work-head h1 small { display: block; font-size: clamp(15px, 1.8vw, 19px); color: var(--gray); font-weight: 400; margin-top: 10px; letter-spacing: 0; }
+.work-head .award { display: inline-block; margin-top: 18px; font-size: 14px; font-weight: 600; color: var(--accent); border: 1px solid currentColor; border-radius: 999px; padding: 5px 14px; }
+
+.meta-table { font-size: 15px; border-top: 1px solid var(--ink); }
+.meta-table div { display: flex; gap: 18px; padding: 12px 0; border-bottom: 1px solid var(--line); }
+.meta-table dt { width: 84px; flex-shrink: 0; color: var(--gray); font-weight: 500; }
+.meta-table dd { flex: 1; }
+
+.work-abstract { max-width: 760px; padding-bottom: clamp(40px, 6vw, 80px); font-size: clamp(15px, 1.7vw, 17.5px); line-height: 1.85; color: #333; }
+
+.work-gallery { display: grid; gap: clamp(16px, 2.5vw, 36px); padding-bottom: clamp(50px, 7vw, 110px); }
+.work-gallery img { width: 100%; background: #f2f0ed; }
+
+.work-nav { display: flex; justify-content: space-between; border-top: 1px solid var(--line); padding: 26px 0 70px; font-size: 15px; }
+.work-nav a { display: flex; flex-direction: column; gap: 4px; max-width: 44%; }
+.work-nav a span:first-child { font-size: 12.5px; color: var(--gray); letter-spacing: 0.06em; text-transform: uppercase; }
+.work-nav a span:last-child { font-weight: 600; }
+.work-nav a:hover span:last-child { color: var(--accent); }
+.work-nav .next { text-align: right; margin-left: auto; }
+
+/* ---------- 어바웃 ---------- */
+.page-head { padding-top: clamp(52px, 8vw, 110px); padding-bottom: clamp(30px, 4vw, 60px); }
+.page-head h1 { font-size: clamp(32px, 5vw, 64px); font-weight: 600; letter-spacing: -0.02em; }
+.page-head h1 .dot { color: var(--accent); }
+.page-head p { margin-top: 18px; color: var(--gray); max-width: 540px; }
+
+.about-grid { display: grid; gap: 48px; padding-bottom: clamp(60px, 8vw, 120px); }
+@media (min-width: 900px) { .about-grid { grid-template-columns: 1fr 1.6fr; gap: 80px; } }
+
+.about-side h2 { font-size: 14px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray); font-weight: 600; position: sticky; top: calc(var(--header-h) + 24px); }
+
+.about-body .statement { font-size: clamp(19px, 2.4vw, 27px); font-weight: 500; line-height: 1.55; letter-spacing: -0.01em; margin-bottom: 22px; word-break: keep-all; }
+.about-body .desc { color: #444; max-width: 640px; word-break: keep-all; }
+
+.profile-block { margin-top: clamp(44px, 6vw, 80px); }
+.profile-block h3 { font-size: clamp(20px, 2.4vw, 26px); font-weight: 600; }
+.profile-block h3 small { font-weight: 400; color: var(--gray); font-size: 0.65em; margin-left: 10px; }
+
+.timeline { margin-top: 22px; border-top: 1px solid var(--ink); }
+.timeline li { display: flex; gap: 22px; padding: 13px 0; border-bottom: 1px solid var(--line); font-size: 15px; }
+.timeline .yr { width: 110px; flex-shrink: 0; color: var(--gray); font-weight: 500; font-variant-numeric: tabular-nums; }
+
+.award-list li::before { content: ""; display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); margin-right: 12px; vertical-align: middle; }
+
+/* ---------- 컨택트 ---------- */
+.contact { padding-bottom: clamp(70px, 9vw, 130px); }
+.contact .big-mail {
+  display: inline-block;
+  font-size: clamp(26px, 5vw, 60px); font-weight: 600; letter-spacing: -0.02em;
+  border-bottom: 3px solid var(--ink); padding-bottom: 6px; margin: 8px 0 48px;
+  transition: 0.25s ease;
+}
+.contact .big-mail:hover { color: var(--accent); border-color: var(--accent); }
+
+.contact-grid { display: grid; gap: 36px; font-size: 15.5px; }
+@media (min-width: 760px) { .contact-grid { grid-template-columns: repeat(3, 1fr); } }
+.contact-grid h3 { font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray); margin-bottom: 10px; }
+.contact-grid a:hover { color: var(--accent); }
+
+/* ---------- 푸터 ---------- */
+.footer { border-top: 1px solid var(--line); }
+.footer__inner {
+  max-width: var(--max); margin: 0 auto; padding: 30px var(--pad) 36px;
+  display: flex; flex-wrap: wrap; gap: 14px; align-items: center; justify-content: space-between;
+  font-size: 13.5px; color: var(--gray);
+}
+.footer__logo { height: 20px; width: auto; opacity: 0.9; }
+
+/* ---------- 모바일 ---------- */
+@media (max-width: 759px) {
+  .menu-btn { display: block; }
+  .nav {
+    position: fixed; top: var(--header-h); right: 0; left: 0;
+    background: #fff; border-bottom: 1px solid var(--line);
+    flex-direction: column; gap: 0; padding: 8px var(--pad) 18px;
+    transform: translateY(-130%); transition: transform 0.35s ease;
+  }
+  .nav.open { transform: none; }
+  .nav a { padding: 13px 0; font-size: 17px; }
+  .work-card__body { flex-direction: column; gap: 6px; }
+  .work-card__meta { white-space: normal; }
+}
