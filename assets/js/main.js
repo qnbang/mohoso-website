@@ -28,8 +28,8 @@ function renderChrome() {
       </a>
       <button class="menu-btn" aria-label="메뉴 열기"><span></span><span></span><span></span></button>
       <nav class="nav en">
-        <a href="${ROOT}/index.html" class="${here === "work" ? "active" : ""}">Work</a>
         <a href="${ROOT}/about.html" class="${here === "about" ? "active" : ""}">About</a>
+        <a href="${ROOT}/index.html" class="${here === "work" ? "active" : ""}">Work</a>
         <a href="${ROOT}/contact.html" class="${here === "contact" ? "active" : ""}">Contact</a>
       </nav>
     </div>`;
