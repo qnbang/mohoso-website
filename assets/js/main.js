@@ -138,6 +138,20 @@ function renderAbout() {
     list
       .map((it) => `<li><span class="yr">${esc(it.yr)}</span><span>${esc(it.text)}</span></li>`)
       .join("");
+  // 이전 작품: slug가 있으면 썸네일 + 프로젝트 페이지로 이동, 없으면 텍스트만
+  const works = (list) =>
+    list
+      .map((it) => {
+        const p = it.slug && PROJECTS.find((x) => x.slug === it.slug);
+        const thumb = p
+          ? `<span class="pw-thumb"><img src="${ROOT}/assets/img/works/${p.slug}/${p.images[0]}" alt="${esc(it.text)}" loading="lazy" /></span>`
+          : `<span class="pw-thumb pw-thumb--none"></span>`;
+        const inner = `${thumb}<span class="yr">${esc(it.yr)}</span><span class="pw-text">${esc(it.text)}</span>${p ? '<span class="pw-go">→</span>' : ""}`;
+        return p
+          ? `<li class="pw-item pw-link"><a href="${ROOT}/work.html?id=${p.slug}">${inner}</a></li>`
+          : `<li class="pw-item">${inner}</li>`;
+      })
+      .join("");
   mount.innerHTML = `
     <div class="about-grid wrap">
       <aside class="about-side"><h2>Office</h2></aside>
@@ -154,8 +168,8 @@ function renderAbout() {
           <ul class="timeline">${rows(a.career)}</ul>
         </div>
         <div class="profile-block">
-          <h3>수상 <small class="en">Awards</small></h3>
-          <ul class="timeline award-list">${rows(a.awards)}</ul>
+          <h3>이전 작품 <small class="en">Previous works</small></h3>
+          <ul class="pw-list">${works(a.awards)}</ul>
           ${a.note ? `<p class="desc" style="margin-top:18px; font-size:13.5px; color:var(--gray)">${nl2br(a.note)}</p>` : ""}
         </div>
       </div>
@@ -167,12 +181,21 @@ function renderContact() {
   const mount = document.querySelector("#contact-mount");
   if (!mount) return;
   const c = SITE.contact;
+  const link = (href, label) => `<a href="${esc(href)}" target="_blank" rel="noopener">${esc(label)}</a>`;
+  const online = [
+    c.blogUrl ? link(c.blogUrl, "블로그 (Blog)") : "",
+    c.instagramHandle ? link(c.instagramUrl || "#", "Instagram " + c.instagramHandle) : "",
+    c.website ? link(c.website, c.website.replace(/^https?:\/\//, "")) : "",
+  ].filter(Boolean).join("<br />");
   mount.innerHTML = `
     <a class="big-mail en" href="mailto:${esc(c.email)}">${esc(c.email)}</a>
     <div class="contact-grid">
-      <div><h3 class="en">Office</h3><p>${nl2br(c.office)}</p></div>
-      <div><h3 class="en">Phone</h3><p>${nl2br(c.phone)}</p></div>
-      <div><h3 class="en">Instagram</h3><p><a href="${esc(c.instagramUrl)}" rel="noopener">${esc(c.instagramHandle)}</a></p></div>
+      <div>
+        <h3 class="en">Office</h3>
+        <p>${nl2br(c.office)}${c.officeMapUrl ? `<br /><a class="map-link" href="${esc(c.officeMapUrl)}" target="_blank" rel="noopener">네이버 지도에서 보기 →</a>` : ""}</p>
+      </div>
+      <div><h3 class="en">Phone</h3><p><a href="tel:${esc((c.phone || "").replace(/[^0-9+]/g, ""))}">${esc(c.phone)}</a></p></div>
+      <div><h3 class="en">Online</h3><p>${online}</p></div>
     </div>`;
 }
 

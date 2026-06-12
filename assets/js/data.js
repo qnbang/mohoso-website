@@ -96,46 +96,51 @@ const PROJECTS = [
 ];
 
 const SITE = {
-  // 메인 상단 인트로
+  // 메인 상단 인트로 (블로그 소개글 기준)
   intro: {
     sub:
-      "모호소 건축사사무소는 도시와 사람 사이의 모호한 경계를 탐구합니다. 문화시설부터 역사(驛舍), 복합개발까지 — 설계공모에서 검증된 설계 역량으로 장소의 가능성을 건축으로 번역합니다.",
+      "모호소(MOHOSO)는 '모호함'을 불완전함이 아닌, 다양성을 수용하는 여백으로 봅니다. 명확한 형태 이전의 공간이 지닌 새로운 가능성을 찾아 — 사람과 장소, 기능과 감성 사이의 유연한 관계를 건축으로 제안합니다.",
   },
-  // About 페이지
+  // About 페이지 (블로그 소개글 기준)
   about: {
     statement:
-      "모호소(MOHOSO)는 도시와 건축, 안과 밖, 일상과 비일상 사이의 모호한 경계를 즐겁게 탐구하는 건축사사무소입니다.",
+      "건축을 한다는 것은 물리적인 벽을 세우는 일이 아니라, 그 안에서 사람과 공간, 시간과 경험이 관계를 맺는 방식을 만드는 일입니다.\n\n모호소는 '모호함'을 불완전함이 아닌 다양성을 수용하는 여백으로 바라봅니다.",
     desc:
-      "우리는 건축을 하나의 정답이 아니라 장소가 품은 여러 가능성의 번역이라고 생각합니다. 문화시설, 역사(驛舍), 대규모 복합개발, 리모델링까지 — 규모와 용도를 가리지 않고 전략 수립과 개념 정리, 그리고 그것을 설득력 있는 공간과 이미지로 구현하는 일을 가장 잘하는 일로 삼고 있습니다.",
+      "우리는 정형화된 틀을 벗어나 그 모호한 경계 속에서, 명확한 형태 이전의 공간이 지닌 새로운 가능성을 찾아가고자 합니다. 모호소는 건축을 통해 사람과 장소, 기능과 감성 사이의 유연한 관계를 제안합니다.",
     principalName: "목현수",
-    principalRole: "Hyeonsu Mok — KIRA Architect / Designer",
+    principalRole: "Hyeonsu Mok",
     career: [
-      { yr: "2024 —", text: "모호소 건축사사무소 대표" },
-      { yr: "2022 – 2024", text: "AA아키그룹 건축사사무소 (구 현대종합설계) 디자인부문" },
-      { yr: "2021 – 2022", text: "포스코 A&C 건축사사무소" },
-      { yr: "2018 – 2021", text: "시아플랜 건축사사무소 디자인파트" },
-      { yr: "2023", text: "건축사(KIRA) 자격 취득" },
-      { yr: "2018", text: "인하대학교 건축학 학사 졸업" },
+      { yr: "2026 —", text: "건축사사무소 모호소 대표" },
+      { yr: "2023", text: "대한민국 건축사(KIRA) 취득" },
+      { yr: "2022 – 2024", text: "AA아키그룹 건축사사무소 (구 현대종합설계 건축사사무소)" },
+      { yr: "2021 – 2022", text: "포스코A&C 건축사사무소" },
+      { yr: "2018 – 2021", text: "시아플랜 건축사사무소" },
+      { yr: "~ 2018", text: "건축사사무소 공장" },
+      { yr: "2018", text: "인하대학교 건축학과 학사 졸업" },
     ],
+    // 이전 작품(Previous works) — slug가 있으면 썸네일+해당 프로젝트 페이지로 이동
     awards: [
-      { yr: "2023", text: "KG그룹 사옥 리모델링 지명설계공모 당선" },
-      { yr: "2023", text: "에버랜드 정문 주차타워 지명설계공모 당선" },
+      { yr: "2023", text: "KG그룹 사옥 리모델링 지명설계공모 당선", slug: "kg-tower-remodeling" },
+      { yr: "2023", text: "에버랜드 정문 주차타워 지명설계공모 당선", slug: "everland-parking-tower" },
       { yr: "2022", text: "당진종합체육관 설계공모 당선" },
-      { yr: "2021", text: "국가문헌보존관 건립 국제설계공모 3등" },
-      { yr: "2020", text: "서울역 북부역세권 개발사업 설계공모 당선" },
-      { yr: "2019", text: "전주역사 국제설계공모 당선" },
-      { yr: "2018", text: "창동·상계 창업 및 문화산업단지 국제설계공모 당선" },
+      { yr: "2021", text: "국가문헌보존관 건립 국제설계공모 3등", slug: "national-archives" },
+      { yr: "2020", text: "서울역 북부역세권 개발사업 설계공모 당선", slug: "seoul-station-north" },
+      { yr: "2019", text: "전주역사 국제설계공모 당선", slug: "jeonju-station" },
+      { yr: "2018", text: "창동·상계 창업 및 문화산업단지 국제설계공모 당선", slug: "conversion-platform" },
       { yr: "2018", text: "자곡지식산업센터 지명설계공모 당선" },
     ],
     note:
       "* 2018–2024년 프로젝트는 시아플랜·포스코 A&C·AA아키그룹 재직 시 수행한 작업이며, 각 프로젝트 페이지에 수행 당시의 소속과 역할을 표기했습니다.",
   },
-  // Contact 페이지
+  // Contact 페이지 (블로그 기재 정보 기준)
   contact: {
-    email: "hello@mohoso.kr",
-    office: "주소 확정 후 기재 예정",
-    phone: "전화번호 확정 후 기재 예정",
-    instagramHandle: "@mohoso_architects",
-    instagramUrl: "#",
+    email: "hs.mok@mohoso.co.kr",
+    office: "서울특별시 중구 퇴계로45길 22, 3층",
+    officeMapUrl: "https://map.naver.com/p/search/%EC%84%9C%EC%9A%B8%ED%8A%B9%EB%B3%84%EC%8B%9C%20%EC%A4%91%EA%B5%AC%20%ED%87%B4%EA%B3%84%EB%A1%9C45%EA%B8%B8%2022",
+    phone: "0507-1307-4355",
+    blogUrl: "https://blog.naver.com/mohoso",
+    website: "https://www.mohoso.co.kr",
+    instagramHandle: "@mohoso_archi",
+    instagramUrl: "https://www.instagram.com/mohoso_archi",
   },
 };
