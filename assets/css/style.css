@@ -55,9 +55,9 @@ ul { list-style: none; }
 .logo-stack { display: inline-flex; flex-direction: column; align-items: flex-start; }
 .logo-stack__symbol, .logo-stack__word { display: block; width: auto; }
 /* 헤더(작게) — 가로 배치(심볼 옆 글자). 세로로 쌓으면 작아서 뭉개짐 */
-.header__logo .logo-stack { flex-direction: row; align-items: center; gap: 9px; }
-.header__logo .logo-stack__symbol { height: 32px; }
-.header__logo .logo-stack__word { height: 32px; }
+.header__logo .logo-stack { flex-direction: row; align-items: center; gap: 8px; }
+.header__logo .logo-stack__symbol { height: 27px; }
+.header__logo .logo-stack__word { height: 27px; }
 
 .nav { display: flex; gap: clamp(20px, 3vw, 44px); }
 .nav a {
@@ -82,9 +82,9 @@ main { padding-top: var(--header-h); }
 /* ---------- 인트로 (메인 상단) ---------- */
 .intro { padding-top: clamp(48px, 8vw, 110px); padding-bottom: clamp(40px, 6vw, 90px); }
 .intro__logo-wrap { margin: 0; }
-.logo-stack--hero { gap: clamp(14px, 1.8vw, 24px); }
+.logo-stack--hero { gap: clamp(8px, 1.1vw, 15px); }
 .logo-stack--hero .logo-stack__symbol { height: clamp(44px, 5.5vw, 74px); }
-.logo-stack--hero .logo-stack__word { height: clamp(52px, 6.5vw, 92px); }
+.logo-stack--hero .logo-stack__word { height: clamp(60px, 7.6vw, 108px); }
 .intro__sub {
   margin-top: clamp(28px, 4vw, 44px); max-width: 600px;
   font-size: clamp(15px, 1.6vw, 18px); color: var(--gray); font-weight: 400;
