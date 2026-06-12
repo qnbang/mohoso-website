@@ -82,6 +82,20 @@ main { padding-top: var(--header-h); }
   font-size: clamp(15px, 1.6vw, 18px); color: var(--gray); font-weight: 400;
 }
 
+/* ---------- 메인: 대표 작품 ---------- */
+.featured { padding-bottom: clamp(70px, 9vw, 140px); }
+.featured__head { margin-bottom: clamp(22px, 3vw, 38px); border-top: 1px solid var(--line); padding-top: 18px; }
+.featured__head h2 { font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray); font-weight: 600; }
+.featured__head h2 span { margin-left: 8px; color: var(--ink); letter-spacing: 0; text-transform: none; font-weight: 500; }
+.featured__grid { display: grid; gap: clamp(20px, 2.5vw, 36px); grid-template-columns: 1fr; }
+@media (min-width: 740px) { .featured__grid { grid-template-columns: repeat(3, 1fr); } }
+.btn-all {
+  display: inline-block; margin-top: clamp(34px, 4vw, 56px);
+  font-size: 15px; font-weight: 600; color: var(--ink);
+  border: 1px solid var(--ink); border-radius: 999px; padding: 12px 26px; transition: 0.2s ease;
+}
+.btn-all:hover { background: var(--ink); color: #fff; }
+
 /* ---------- 프로젝트 그리드 ---------- */
 .works { padding-bottom: clamp(70px, 9vw, 140px); }
 .works__grid {
@@ -90,22 +104,22 @@ main { padding-top: var(--header-h); }
   column-gap: clamp(16px, 2.5vw, 40px);
   row-gap: clamp(48px, 6vw, 110px);
 }
-.work-card { grid-column: span 12; }
+.works__grid .work-card { grid-column: span 12; }
 
-/* 12칸 그리드 위에서 7/5 — 5/7 교차 배치로 리듬을 만든다 */
+/* 12칸 그리드 위에서 7/5 — 5/7 교차 배치로 리듬을 만든다 (Work 전체 그리드에서만) */
 @media (min-width: 760px) {
-  .work-card:nth-child(4n + 1) { grid-column: 1 / span 7; }
-  .work-card:nth-child(4n + 2) { grid-column: 8 / span 5; align-self: end; }
-  .work-card:nth-child(4n + 3) { grid-column: 1 / span 5; }
-  .work-card:nth-child(4n + 4) { grid-column: 6 / span 7; }
+  .works__grid .work-card:nth-child(4n + 1) { grid-column: 1 / span 7; }
+  .works__grid .work-card:nth-child(4n + 2) { grid-column: 8 / span 5; align-self: end; }
+  .works__grid .work-card:nth-child(4n + 3) { grid-column: 1 / span 5; }
+  .works__grid .work-card:nth-child(4n + 4) { grid-column: 6 / span 7; }
 }
 
 .work-card__media {
   overflow: hidden; background: #f2f0ed;
   aspect-ratio: 4 / 3;
 }
-.work-card:nth-child(4n + 2) .work-card__media,
-.work-card:nth-child(4n + 3) .work-card__media { aspect-ratio: 1 / 1; }
+.works__grid .work-card:nth-child(4n + 2) .work-card__media,
+.works__grid .work-card:nth-child(4n + 3) .work-card__media { aspect-ratio: 1 / 1; }
 
 .work-card__media img {
   width: 100%; height: 100%; object-fit: cover;

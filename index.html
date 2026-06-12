@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="assets/css/시각조정.css" /><!-- 시각편집기 보정 스타일 -->
   <script src="assets/js/시각조정-텍스트.js" defer></script><!-- 시각편집기 글자 보정 -->
 </head>
-<body data-page="work" data-root=".">
+<body data-page="home" data-root=".">
   <main>
     <section class="intro wrap">
       <h1 class="intro__logo-wrap reveal on">
@@ -22,8 +22,10 @@
       <p class="intro__sub reveal on" id="intro-sub"><!-- main.js가 data.js(SITE.intro)를 읽어 채웁니다 --></p>
     </section>
 
-    <section class="works wrap">
-      <div class="works__grid"><!-- main.js가 data.js를 읽어 채웁니다 --></div>
+    <section class="featured wrap">
+      <div class="featured__head reveal"><h2 class="en">Featured <span>대표 작품</span></h2></div>
+      <div class="featured__grid" id="featured-grid"><!-- main.js: 대표작 3개 --></div>
+      <a class="btn-all en reveal" href="works.html">작품 전체 보기 →</a>
     </section>
   </main>
 

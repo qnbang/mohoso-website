@@ -29,7 +29,7 @@ function renderChrome() {
       <button class="menu-btn" aria-label="메뉴 열기"><span></span><span></span><span></span></button>
       <nav class="nav en">
         <a href="${ROOT}/about.html" class="${here === "about" ? "active" : ""}">About</a>
-        <a href="${ROOT}/index.html" class="${here === "work" ? "active" : ""}">Work</a>
+        <a href="${ROOT}/works.html" class="${here === "work" ? "active" : ""}">Work</a>
         <a href="${ROOT}/contact.html" class="${here === "contact" ? "active" : ""}">Contact</a>
       </nav>
     </div>`;
@@ -61,17 +61,9 @@ function observeReveal() {
   document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
 }
 
-/* ---------- 메인: 인트로 + 프로젝트 그리드 ---------- */
-function renderIntroSub() {
-  const el = document.querySelector("#intro-sub");
-  if (el && typeof SITE !== "undefined") el.innerHTML = nl2br(SITE.intro.sub);
-}
-
-function renderWorkGrid() {
-  const grid = document.querySelector(".works__grid");
-  if (!grid) return;
-  grid.innerHTML = PROJECTS.map(
-    (p) => `
+/* ---------- 작품 카드 (메인 대표작 / Work 전체 공용) ---------- */
+function cardHTML(p) {
+  return `
     <a class="work-card reveal" href="${ROOT}/work.html?id=${p.slug}">
       <div class="work-card__media">
         <img src="${ROOT}/assets/img/works/${p.slug}/${p.images[0]}" alt="${esc(p.titleKo)} 대표 이미지" loading="lazy" />
@@ -82,8 +74,26 @@ function renderWorkGrid() {
         </h2>
         <span class="work-card__meta">${esc(p.category)} · ${esc(p.year)}</span>
       </div>
-    </a>`
-  ).join("");
+    </a>`;
+}
+
+/* ---------- 메인: 인트로 + 대표 작품 ---------- */
+function renderIntroSub() {
+  const el = document.querySelector("#intro-sub");
+  if (el && typeof SITE !== "undefined") el.innerHTML = nl2br(SITE.intro.sub);
+}
+
+function renderFeatured() {
+  const grid = document.querySelector("#featured-grid");
+  if (!grid) return;
+  grid.innerHTML = PROJECTS.slice(0, 3).map(cardHTML).join(""); // 앞 3개를 대표작으로
+}
+
+/* ---------- Work: 전체 작품 그리드 ---------- */
+function renderWorkGrid() {
+  const grid = document.querySelector("#work-grid");
+  if (!grid) return;
+  grid.innerHTML = PROJECTS.map(cardHTML).join("");
 }
 
 /* ---------- 상세: 프로젝트 페이지 ---------- */
@@ -198,6 +208,7 @@ function renderContact() {
 document.addEventListener("DOMContentLoaded", () => {
   renderChrome();
   renderIntroSub();
+  renderFeatured();
   renderWorkGrid();
   renderWorkDetail();
   renderAbout();
