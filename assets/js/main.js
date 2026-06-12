@@ -24,7 +24,10 @@ function renderChrome() {
   header.innerHTML = `
     <div class="header__inner">
       <a class="header__logo" href="${ROOT}/index.html" aria-label="모호소 건축사사무소 홈으로">
-        <img src="${ROOT}/assets/img/logo-가로형.png" alt="MOHOSO Architects &amp; Planners" />
+        <span class="logo-stack">
+          <img class="logo-stack__symbol" src="${ROOT}/assets/img/로고-심볼.png" alt="" />
+          <img class="logo-stack__word" src="${ROOT}/assets/img/로고-워드마크.png" alt="MOHOSO Architects &amp; Planners" />
+        </span>
       </a>
       <button class="menu-btn" aria-label="메뉴 열기"><span></span><span></span><span></span></button>
       <nav class="nav en">

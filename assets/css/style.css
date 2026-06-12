@@ -51,7 +51,13 @@ ul { list-style: none; }
   padding: 0 var(--pad);
   display: flex; align-items: center; justify-content: space-between;
 }
-.header__logo img { height: 56px; width: auto; }  /* 크게 + 비율 유지(width auto). 헤더 72px 안에서 상하 여백 최소 */
+/* 로고: 심볼(위) + 워드마크(아래) 왼쪽 정렬 스택 — 헤더·히어로 공용 */
+.logo-stack { display: inline-flex; flex-direction: column; align-items: flex-start; }
+.logo-stack__symbol, .logo-stack__word { display: block; width: auto; }
+/* 헤더(작게) */
+.header__logo .logo-stack { gap: 5px; }
+.header__logo .logo-stack__symbol { height: 22px; }
+.header__logo .logo-stack__word { height: 22px; }
 
 .nav { display: flex; gap: clamp(20px, 3vw, 44px); }
 .nav a {
@@ -76,7 +82,9 @@ main { padding-top: var(--header-h); }
 /* ---------- 인트로 (메인 상단) ---------- */
 .intro { padding-top: clamp(48px, 8vw, 110px); padding-bottom: clamp(40px, 6vw, 90px); }
 .intro__logo-wrap { margin: 0; }
-.intro__logo { display: block; width: clamp(300px, 46vw, 540px); height: auto; }  /* 원본 가로형 로고를 왼쪽 정렬로 */
+.logo-stack--hero { gap: clamp(14px, 1.8vw, 24px); }
+.logo-stack--hero .logo-stack__symbol { height: clamp(44px, 5.5vw, 74px); }
+.logo-stack--hero .logo-stack__word { height: clamp(52px, 6.5vw, 92px); }
 .intro__sub {
   margin-top: clamp(28px, 4vw, 44px); max-width: 600px;
   font-size: clamp(15px, 1.6vw, 18px); color: var(--gray); font-weight: 400;
