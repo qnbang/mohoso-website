@@ -123,12 +123,10 @@ const SITE = {
     awards: [
       { yr: "2023", text: "KG그룹 사옥 리모델링 지명설계공모 당선", slug: "kg-tower-remodeling" },
       { yr: "2023", text: "에버랜드 정문 주차타워 지명설계공모 당선", slug: "everland-parking-tower" },
-      { yr: "2022", text: "당진종합체육관 설계공모 당선" },
       { yr: "2021", text: "국가문헌보존관 건립 국제설계공모 3등", slug: "national-archives" },
       { yr: "2020", text: "서울역 북부역세권 개발사업 설계공모 당선", slug: "seoul-station-north" },
       { yr: "2019", text: "전주역사 국제설계공모 당선", slug: "jeonju-station" },
       { yr: "2018", text: "창동·상계 창업 및 문화산업단지 국제설계공모 당선", slug: "conversion-platform" },
-      { yr: "2018", text: "자곡지식산업센터 지명설계공모 당선" },
     ],
     note: "",
   },
