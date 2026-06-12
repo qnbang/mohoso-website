@@ -39,7 +39,6 @@ function renderChrome() {
   footer.className = "footer";
   footer.innerHTML = `
     <div class="footer__inner">
-      <img class="footer__logo" src="${ROOT}/assets/img/logo-가로형.png" alt="MOHOSO" />
       <span>© ${new Date().getFullYear()} MOHOSO Architects &amp; Planners. All rights reserved.</span>
     </div>`;
   document.body.append(footer);
@@ -134,9 +133,10 @@ function renderAbout() {
   const mount = document.querySelector("#about-mount");
   if (!mount) return;
   const a = SITE.about;
+  // 연혁: 연도 없이 텍스트만 (연도가 있으면 함께 표시)
   const rows = (list) =>
     list
-      .map((it) => `<li><span class="yr">${esc(it.yr)}</span><span>${esc(it.text)}</span></li>`)
+      .map((it) => `<li>${it.yr ? `<span class="yr">${esc(it.yr)}</span>` : ""}<span>${esc(it.text)}</span></li>`)
       .join("");
   // 이전 작품: slug가 있으면 썸네일 + 프로젝트 페이지로 이동, 없으면 텍스트만
   const works = (list) =>
@@ -181,12 +181,7 @@ function renderContact() {
   const mount = document.querySelector("#contact-mount");
   if (!mount) return;
   const c = SITE.contact;
-  const link = (href, label) => `<a href="${esc(href)}" target="_blank" rel="noopener">${esc(label)}</a>`;
-  const online = [
-    c.blogUrl ? link(c.blogUrl, "블로그 (Blog)") : "",
-    c.instagramHandle ? link(c.instagramUrl || "#", "Instagram " + c.instagramHandle) : "",
-    c.website ? link(c.website, c.website.replace(/^https?:\/\//, "")) : "",
-  ].filter(Boolean).join("<br />");
+  const blogText = (c.blogUrl || "").replace(/^https?:\/\//, "").replace(/\/$/, "");
   mount.innerHTML = `
     <a class="big-mail en" href="mailto:${esc(c.email)}">${esc(c.email)}</a>
     <div class="contact-grid">
@@ -195,7 +190,8 @@ function renderContact() {
         <p>${nl2br(c.office)}${c.officeMapUrl ? `<br /><a class="map-link" href="${esc(c.officeMapUrl)}" target="_blank" rel="noopener">네이버 지도에서 보기 →</a>` : ""}</p>
       </div>
       <div><h3 class="en">Phone</h3><p><a href="tel:${esc((c.phone || "").replace(/[^0-9+]/g, ""))}">${esc(c.phone)}</a></p></div>
-      <div><h3 class="en">Online</h3><p>${online}</p></div>
+      ${c.instagramHandle ? `<div><h3 class="en">Instagram</h3><p><a href="${esc(c.instagramUrl || "#")}" target="_blank" rel="noopener">${esc(c.instagramHandle)}</a></p></div>` : ""}
+      ${c.blogUrl ? `<div><h3 class="en">Blog</h3><p><a href="${esc(c.blogUrl)}" target="_blank" rel="noopener">${esc(blogText)}</a></p></div>` : ""}
     </div>`;
 }
 
