@@ -76,7 +76,7 @@ main { padding-top: var(--header-h); }
 /* ---------- 인트로 (메인 상단) ---------- */
 .intro { padding-top: clamp(48px, 8vw, 110px); padding-bottom: clamp(40px, 6vw, 90px); }
 .intro__logo-wrap { margin: 0; }
-.intro__logo { width: clamp(220px, 30vw, 400px); height: auto; }  /* 원본 세로형 로고를 그대로 배치 */
+.intro__logo { display: block; width: clamp(300px, 46vw, 540px); height: auto; }  /* 원본 가로형 로고를 왼쪽 정렬로 */
 .intro__sub {
   margin-top: clamp(28px, 4vw, 44px); max-width: 600px;
   font-size: clamp(15px, 1.6vw, 18px); color: var(--gray); font-weight: 400;
