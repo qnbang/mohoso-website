@@ -88,6 +88,7 @@ main { padding-top: var(--header-h); }
 .intro__sub {
   margin-top: clamp(28px, 4vw, 44px); max-width: 600px;
   font-size: clamp(15px, 1.6vw, 18px); color: var(--gray); font-weight: 400;
+  word-break: keep-all; /* 한글이 '봅니다'처럼 단어 중간에서 끊기지 않게 */
 }
 
 /* ---------- 메인: 대표 작품 ---------- */
@@ -218,23 +219,31 @@ main { padding-top: var(--header-h); }
 .pw-link > a:hover .pw-thumb img { transform: scale(1.06); }
 @media (max-width: 600px) { .pw-thumb { width: 52px; height: 38px; } .pw-item .yr { width: 44px; font-size: 13px; } }
 
-/* ---------- 컨택트 ---------- */
+/* ---------- 컨택트 (위계: 이메일=1차 / 상세=2차) ---------- */
 .contact { padding-bottom: clamp(70px, 9vw, 130px); }
+
+/* 1차 — 대표 연락 수단(이메일) */
+.contact-primary { margin-bottom: clamp(40px, 6vw, 72px); }
+.contact-eyebrow { display: block; font-size: 12.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gray); font-weight: 600; margin-bottom: 14px; }
 .contact .big-mail {
   display: inline-block;
-  font-size: clamp(26px, 5vw, 60px); font-weight: 600; letter-spacing: -0.02em;
-  border-bottom: 3px solid var(--ink); padding-bottom: 6px; margin: 8px 0 48px;
+  font-size: clamp(24px, 4.6vw, 52px); font-weight: 600; letter-spacing: -0.02em;
+  border-bottom: 2.5px solid var(--ink); padding-bottom: 6px;
   transition: 0.25s ease;
 }
 .contact .big-mail:hover { color: var(--accent); border-color: var(--accent); }
 
-.contact-grid { display: grid; gap: 36px; font-size: 15.5px; }
+/* 2차 — 상세 정보(구분선으로 분리) */
+.contact-grid {
+  display: grid; gap: 30px 36px;
+  border-top: 1px solid var(--line); padding-top: clamp(30px, 4vw, 48px);
+}
 @media (min-width: 560px) { .contact-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (min-width: 860px) { .contact-grid { grid-template-columns: repeat(4, 1fr); } }
-.contact-grid h3 { font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray); margin-bottom: 10px; }
-.contact-grid a:hover { color: var(--accent); }
-.contact-grid .map-link { display: inline-block; margin-top: 8px; font-size: 14px; color: var(--accent); font-weight: 500; }
-.contact-grid p a { line-height: 2; }
+@media (min-width: 880px) { .contact-grid { grid-template-columns: repeat(4, 1fr); } }
+.contact-item h3 { font-size: 12.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray); font-weight: 600; margin-bottom: 12px; }
+.contact-item p { font-size: 15.5px; line-height: 1.65; color: var(--ink); }
+.contact-item a:hover { color: var(--accent); }
+.contact-item .map-link { display: inline-block; margin-top: 8px; font-size: 13.5px; color: var(--accent); font-weight: 500; }
 
 /* ---------- 푸터 ---------- */
 .footer { border-top: 1px solid var(--line); }

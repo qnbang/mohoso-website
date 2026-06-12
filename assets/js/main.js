@@ -196,15 +196,18 @@ function renderContact() {
   const c = SITE.contact;
   const blogText = (c.blogUrl || "").replace(/^https?:\/\//, "").replace(/\/$/, "");
   mount.innerHTML = `
-    <a class="big-mail en" href="mailto:${esc(c.email)}">${esc(c.email)}</a>
+    <div class="contact-primary">
+      <span class="contact-eyebrow en">Email</span>
+      <a class="big-mail en" href="mailto:${esc(c.email)}">${esc(c.email)}</a>
+    </div>
     <div class="contact-grid">
-      <div>
+      <div class="contact-item">
         <h3 class="en">Office</h3>
         <p>${nl2br(c.office)}${c.officeMapUrl ? `<br /><a class="map-link" href="${esc(c.officeMapUrl)}" target="_blank" rel="noopener">네이버 지도에서 보기 →</a>` : ""}</p>
       </div>
-      <div><h3 class="en">Phone</h3><p><a href="tel:${esc((c.phone || "").replace(/[^0-9+]/g, ""))}">${esc(c.phone)}</a></p></div>
-      ${c.instagramHandle ? `<div><h3 class="en">Instagram</h3><p><a href="${esc(c.instagramUrl || "#")}" target="_blank" rel="noopener">${esc(c.instagramHandle)}</a></p></div>` : ""}
-      ${c.blogUrl ? `<div><h3 class="en">Blog</h3><p><a href="${esc(c.blogUrl)}" target="_blank" rel="noopener">${esc(blogText)}</a></p></div>` : ""}
+      <div class="contact-item"><h3 class="en">Phone</h3><p><a href="tel:${esc((c.phone || "").replace(/[^0-9+]/g, ""))}">${esc(c.phone)}</a></p></div>
+      ${c.instagramHandle ? `<div class="contact-item"><h3 class="en">Instagram</h3><p><a href="${esc(c.instagramUrl || "#")}" target="_blank" rel="noopener">${esc(c.instagramHandle)}</a></p></div>` : ""}
+      ${c.blogUrl ? `<div class="contact-item"><h3 class="en">Blog</h3><p><a href="${esc(c.blogUrl)}" target="_blank" rel="noopener">${esc(blogText)}</a></p></div>` : ""}
     </div>`;
 }
 
