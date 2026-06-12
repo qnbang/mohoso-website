@@ -54,10 +54,10 @@ ul { list-style: none; }
 /* 로고: 심볼(위) + 워드마크(아래) 왼쪽 정렬 스택 — 헤더·히어로 공용 */
 .logo-stack { display: inline-flex; flex-direction: column; align-items: flex-start; }
 .logo-stack__symbol, .logo-stack__word { display: block; width: auto; }
-/* 헤더(작게) */
-.header__logo .logo-stack { gap: 5px; }
-.header__logo .logo-stack__symbol { height: 22px; }
-.header__logo .logo-stack__word { height: 22px; }
+/* 헤더(작게) — 가로 배치(심볼 옆 글자). 세로로 쌓으면 작아서 뭉개짐 */
+.header__logo .logo-stack { flex-direction: row; align-items: center; gap: 11px; }
+.header__logo .logo-stack__symbol { height: 42px; }
+.header__logo .logo-stack__word { height: 42px; }
 
 .nav { display: flex; gap: clamp(20px, 3vw, 44px); }
 .nav a {
